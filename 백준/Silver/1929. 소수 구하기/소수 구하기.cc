@@ -1,13 +1,14 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-#define MAX 1000000
-int arr[MAX + 1]{ 0, };
 
 int main()
 {
 	int m, n;
 	cin >> m >> n;
+
+	vector<int> arr(n + 1, 0);
 
 	for (int i = 2; i <= n; i++) {
 		arr[i] = i;
