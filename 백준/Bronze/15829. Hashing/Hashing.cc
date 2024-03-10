@@ -5,25 +5,23 @@ using namespace std;
 int main()
 {
 	int n;
-	int x = 31;
-	int sum = 0;
+	long long  answer;
+	long long x = 1;
+	long long sum = 0;
+	long long m = 1234567891;
 	string s;
 
 	cin >> n ;
 	cin >> s;
 
-	sum +=  (int)(s[0]-96);
 
-	for (int i = 1; i < s.length(); i++) {
-		sum += ((int)(s[i]) - 96) * x;
-		x = x * 31;
+	for (int i = 0; i < s.length(); i++) {
+		sum += ((long (s[i]) - 96) * x)%m ; 
+		x = (x * 31)%m;
+		 answer = sum % m;
 	}
 	 
-	cout << sum;
-
-	
-	
-	
+	cout << answer;
 	
 	
 	return 0;
