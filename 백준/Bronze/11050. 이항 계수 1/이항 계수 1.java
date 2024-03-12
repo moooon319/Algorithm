@@ -9,8 +9,8 @@ public class Main {
 	StringTokenizer st = new StringTokenizer(br.readLine());
 	
 	int n = Integer.parseInt(st.nextToken());
-	int k = Integer.parseInt(st.nextToken());
-	
+	int k = Integer.parseInt(st.nextToken()); 
+
 	System.out.println(fact(n)/(fact(k)*fact(n-k)));
 	}
 	
