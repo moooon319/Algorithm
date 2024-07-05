@@ -3,43 +3,51 @@
 #include <string>
 using namespace std;
 
-int main()
-{
-	int n,num;
-	string order;
+int main() {
+	int n;
 	stack<int> st;
 	cin >> n;
 
 	for (int i = 0; i < n; i++) {
-		cin >> order;
+		string s;
+		cin >> s;
 
-		if (order == "push") {
+		if (s == "push") {
+			int num;
 			cin >> num;
 			st.push(num);
 		}
 
-		else if (order == "pop") {
-			if (st.empty()) cout << "-1" << '\n';		
+		else if (s == "top") {
+			if (st.empty() == 1) {
+				cout << "-1" << '\n';
+			}
+			else {
+				cout << st.top() << '\n';
+			}
+			
+		}
+
+		else if (s == "size") {
+			cout<<st.size()<<'\n';
+		}
+		else if (s == "empty") {
+			if (st.empty()) {
+				cout << "1" << '\n';
+			}
+			else {
+				cout << "0" << '\n';
+			}
+		}
+		else if (s == "pop") {
+			if (st.empty() == 1) {
+				cout << "-1" << '\n';
+			}
 			else {
 				cout << st.top() << '\n';
 				st.pop();
 			}
 		}
 
-		else if (order == "size") {
-			cout << st.size() << '\n';
-		}
-
-		else if (order == "empty") {
-			if (st.empty()) cout << "1" << '\n';
-			else cout << "0" << '\n';
-		}
-
-		else if (order == "top") {
-			if (st.empty()) cout << "-1" << '\n';
-			else cout << st.top() << '\n';
-		}
 	}
 }
-
-	
