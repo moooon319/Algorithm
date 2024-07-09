@@ -27,8 +27,8 @@ int main() {
 
 	DFS(v);
 	cout << '\n';
-	memset(visited, false, sizeof(visited));
-	//fill (visited, visited + 1001, false);
+	//memset(visited, false, sizeof(visited));
+	fill (visited, visited + 1001, false);
 	BFS(v);
 		
 
