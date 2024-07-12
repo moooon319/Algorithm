@@ -1,53 +1,48 @@
-#include<iostream>
-#include<queue>
-#include<vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> v[1001];
+int N, M;
+int u, v;
+int cnt = 0;
 bool visited[1001];
-int n, m,cnt;
+int arr[1001][1001];
 
-void bfs(int index)
-{
-	queue<int> q;
-	q.push(index);
-	visited[index] = 1;
+void DFS(int i) {
 
-	while (!q.empty()) {
-		index = q.front();
-		q.pop();
+	visited[i] = true;
 
-
-		for (int i = 0; i < v[index].size(); i++)
-		{
-			if (visited[v[index][i]] == 0) {
-				q.push(v[index][i]);
-				visited[v[index][i]] = 1;
-			}
+	for (int j = 1; j <= N; j++) {
+		if (arr[i][j] == 1 && visited[j] == false) {
+			DFS(j);
 		}
 	}
 
 }
-int main()
-{
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-	cin >> n >> m;
 
-	for (int i = 1; i <= m; i++) {
-		int a, b;
-		cin >> a >> b;
-		v[a].push_back(b);
-		v[b].push_back(a);
+int main() {
+
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+
+	cin >> N >> M;
+
+	for (int i = 1; i <= M; i++) {
+		cin >> u >> v;
+		arr[u][v] = 1;
+		arr[v][u] = 1;
 	}
 
-	for (int i = 1; i <= n; i++) {
-		if(visited[i] == 0) {
+	for (int i = 1; i <= N; i++) {
+		if (visited[i] == false) {
+			DFS(i);
 			cnt++;
-
-			bfs(i);
 		}
 	}
-	cout << cnt << '\n';
+
+	cout << cnt;
 }
+
+
+
