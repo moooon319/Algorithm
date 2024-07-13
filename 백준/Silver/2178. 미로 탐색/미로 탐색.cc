@@ -1,70 +1,67 @@
-#include<iostream>
-#include<queue>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, m;
-int maze[101][101];
-int visited[101][101];
-int dist[101][101];
-int dx[4] = { -1, 1, 0, 0 };
-int dy[4] = {0, 0, 1, -1};
+
+int N, M;
+
+int dx[4] = {1,-1,0,0};
+int dy[4] = { 0,0,-1,1 };
+bool visited[100][100];
+int arr[100][100];
+int cnt[100][100];
+int new_x, new_y;
 
 
-void  bfs(int x, int y) {
-
+void BFS(int start_x, int start_y) {
 	queue<pair<int, int>> q;
-	visited[x][y] = 1;
-	q.push(make_pair(x, y));
-	dist[x][y]++;
+	visited[start_x][start_y] = true;
+	q.push({ start_x, start_y });
+	cnt[start_x][start_y] = 1;
 
 	while (!q.empty()) {
-		int new_x = q.front().first;
-		int new_y = q.front().second;
+
+		
+		int x = q.front().first;
+		int y = q.front().second;
 		q.pop();
 
 
 		for (int i = 0; i < 4; i++) {
-			int next_x = new_x + dx[i];
-			int next_y = new_y + dy[i];
+			int new_x = x + dx[i];
+			int new_y = y + dy[i];
 
-			/* if (next_x < 0 || next_x >= n || next_y < 0 || next_y >= m)
-				continue;
-
-			if (visited[next_x][next_y] != 0)
-				continue;
-			if (maze[next_x][next_y] = 0)
-				continue; */
-
-			if ((0 <= next_x && next_x < n) && (0 <= next_y && next_y < m)
-				&& !visited[next_x][next_y] && maze[next_x][next_y] == 1){
-
-				visited[next_x][next_y] = 1;
-			q.push(make_pair(next_x, next_y));
-			dist[next_x][next_y] = dist[new_x][new_y] + 1;
+			if (new_x >= 0 && new_x < N && new_y >= 0 && new_y < M
+				&& visited[new_x][new_y] == false && arr[new_x][new_y] == 1) {
+				visited[new_x][new_y] = true;
+				q.push({ new_x, new_y });
+				cnt[new_x][new_y] = cnt[x][y]+1;
+			}
 		}
-		}
+
+
 	}
+	cout << cnt[N-1][M-1];
+	
+	
+
 }
 
-int main()
-{
+int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	cin >> n >> m;
+	cin >> N >> M;
 
-	for (int i = 0; i < n; i++) {
-		string row;
-		cin >> row;
-
-
-		for (int j = 0; j < m; j++) {
-			maze[i][j] = row[j] - '0';
+	for (int i = 0; i < N; i++) {
+		string s;
+		cin >> s;
+		for (int j = 0; j < M; j++) {
+			arr[i][j] = s[j] - '0';
 		}
 	}
-	bfs(0, 0);
-	cout << dist[n - 1][m - 1];
+	BFS(0,0);
+
+	
 
 }
